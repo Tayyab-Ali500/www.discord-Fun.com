@@ -1,0 +1,67 @@
+<!doctype html>
+<h1>Join Our Discord Server Today</h1>
+<p>Be part of our community! Chat, share, and connect with amazing people. This landing page helps visitors join your Discord instantly.</p>
+<p style="margin-top:12px">
+<a class="btn" href="https://discord.com/invite/YOUR_INVITE_LINK" target="_blank">Join Discord</a>
+</p>
+
+
+<div class="cards" style="margin-top:18px">
+<div class="card"><strong>Community</strong><div style="color:var(--muted);margin-top:6px">Meet friendly members</div></div>
+<div class="card"><strong>Events</strong><div style="color:var(--muted);margin-top:6px">Participate in fun activities</div></div>
+<div class="card"><strong>Support</strong><div style="color:var(--muted);margin-top:6px">Get help anytime</div></div>
+</div>
+</section>
+
+
+<aside style="background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:12px">
+<h3 style="margin-top:0">Need help?</h3>
+<p style="color:var(--muted)">If you have any questions, drop your details below. The form data will be stored locally on your browser.</p>
+<form id="contact" onsubmit="handleSubmit(event)">
+<input id="name" placeholder="Your name" required />
+<input id="email" type="email" placeholder="Email" required />
+<textarea id="message" rows="4" placeholder="Your message" required></textarea>
+<button class="btn" type="submit">Send</button>
+<div id="status" style="margin-top:8px;color:var(--muted);font-size:14px"></div>
+</form>
+</aside>
+</main>
+
+
+<section style="margin-top:28px">
+<h2 id="features">Why Join?</h2>
+<div style="color:var(--muted);margin-top:8px">Here’s why you should join our Discord server today.</div>
+<div class="cards" style="margin-top:14px">
+<div class="card"><strong>Active Community</strong><div style="color:var(--muted);margin-top:6px">Always something happening</div></div>
+<div class="card"><strong>Voice & Chat</strong><div style="color:var(--muted);margin-top:6px">Hang out in text and voice channels</div></div>
+<div class="card"><strong>Free to Join</strong><div style="color:var(--muted);margin-top:6px">No cost, just fun!</div></div>
+</div>
+</section>
+
+
+<footer>
+<div>© <span id="year"></span> Join Discord Server — Build your community</div>
+</footer>
+</div>
+
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+function handleSubmit(e){
+e.preventDefault();
+const name = document.getElementById('name').value.trim();
+const email = document.getElementById('email').value.trim();
+const message = document.getElementById('message').value.trim();
+const status = document.getElementById('status');
+if(!name || !email || !message){ status.textContent = 'Please fill all fields.'; return }
+// Simple local "send" simulation: save to localStorage
+const storage = JSON.parse(localStorage.getItem('site_messages')||'[]');
+storage.push({name,email,message,ts:Date.now()});
+localStorage.setItem('site_messages', JSON.stringify(storage));
+status.textContent = 'Message saved — thank you!';
+e.target.reset();
+setTimeout(()=> status.textContent = '',3000);
+}
+</script>
+</body>
+</html>
